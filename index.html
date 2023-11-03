@@ -8,13 +8,17 @@
 <body>
     <h1>Cats API</h1>
 
-    <section id="randomMichis">
+    <span id="error"></span>
+
+    <section id="randomCats">
 
         <h2>Random Cats</h2>
 
+        
+
         <article>
             <img id="img1" width="300" alt="Cat Photo">
-            <button>Save cat to favorites</button>
+            <button onclick="loadRandomCats()">Save cat to favorites</button>
         </article>
 
         <article>
@@ -22,10 +26,6 @@
             <button>Save cat to favorites</button>
         </article>
 
-        <article>
-            <img id="img3" width="300" alt="Cat Photo">
-            <button>Save cat to favorites</button>
-        </article>
 <!--         
         <img id="img1" width="300" alt="Cat Photo">
         <img id="img2" width="300" alt="Cat Photo">
@@ -35,9 +35,9 @@
 
     <h2>Favorites Cats</h2>
 
-    <section id="favoritesMichis">
+    <section id="favoritesCats">
         <img id="img1" width="300" alt="Cat Photo">
-        <button>Remove cat from favorites</button>
+        <button >Remove cat from favorites</button>
     </section>
 
 
