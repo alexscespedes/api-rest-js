@@ -1,14 +1,19 @@
-const URL_RANDOM = 'https://api.thecatapi.com/v1/images/search?limit=2&api_key=live_eUG5kBaW9Zax1TFTuSkshtUaSL7MVGl2VWWWCYDYIkbooD492jj74V59dEHWya3Y';
+const URL_RANDOM = 'https://api.thecatapi.com/v1/images/search?limit=2';
 
-const URL_FAVORITES = 'https://api.thecatapi.com/v1/favourites?api_key=live_eUG5kBaW9Zax1TFTuSkshtUaSL7MVGl2VWWWCYDYIkbooD492jj74V59dEHWya3Y';
-const URL_DELETE_FAVORITES = (id) => `https://api.thecatapi.com/v1/favourites/${id}?api_key=live_eUG5kBaW9Zax1TFTuSkshtUaSL7MVGl2VWWWCYDYIkbooD492jj74V59dEHWya3Y`;
+const URL_FAVORITES = 'https://api.thecatapi.com/v1/favourites';
+const URL_DELETE_FAVORITES = (id) => `https://api.thecatapi.com/v1/favourites/${id}`;
 
 
 const spanError = document.getElementById('error')
 
     async function loadRandomCats() {
         try {
-            const response = await fetch(URL_RANDOM);
+            const response = await fetch(URL_RANDOM, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key': 'live_eUG5kBaW9Zax1TFTuSkshtUaSL7MVGl2VWWWCYDYIkbooD492jj74V59dEHWya3Y'
+            }});
             const data = await response.json();
             console.log(data);
             console.log("Random")
@@ -29,20 +34,20 @@ const spanError = document.getElementById('error')
             })
 
 
-
-
-
         } catch (error) {
             console.error('Error al obtener y mostrar la imagen:', error);
             spanError.innerHTML = 'Hubo un error al cargar las imagenes';
         }
     }
 
-    
-
     async function loadFavoritesCats() {
         try {
-            const response = await fetch(URL_FAVORITES);
+            const response = await fetch(URL_FAVORITES, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key': 'live_eUG5kBaW9Zax1TFTuSkshtUaSL7MVGl2VWWWCYDYIkbooD492jj74V59dEHWya3Y'
+            }});
             const data = await response.json();
             console.log(data);
             const section = document.getElementById('favoriteCats');
@@ -85,6 +90,7 @@ const spanError = document.getElementById('error')
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'x-api-key': 'live_eUG5kBaW9Zax1TFTuSkshtUaSL7MVGl2VWWWCYDYIkbooD492jj74V59dEHWya3Y'
                 },
                 body: JSON.stringify({
                     image_id: id
@@ -108,6 +114,7 @@ const spanError = document.getElementById('error')
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
+                    'x-api-key': 'live_eUG5kBaW9Zax1TFTuSkshtUaSL7MVGl2VWWWCYDYIkbooD492jj74V59dEHWya3Y'
                 },
             });
             const data = await response.json();
