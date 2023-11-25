@@ -1,3 +1,8 @@
+const api = axios.create({
+    baseURL: 'https://api.thecatapi.com/v1/',
+});
+api.defaults.headers.common['X-API-KEY'] = 'live_eUG5kBaW9Zax1TFTuSkshtUaSL7MVGl2VWWWCYDYIkbooD492jj74V59dEHWya3Y';
+
 const URL_RANDOM = 'https://api.thecatapi.com/v1/images/search?limit=2';
 
 const URL_FAVORITES = 'https://api.thecatapi.com/v1/favourites';
@@ -86,27 +91,15 @@ const spanError = document.getElementById('error')
     }
 
     async function saveFavoriteCats(id) {
-        try {
-            const response = await fetch(URL_FAVORITES, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-api-key': 'live_eUG5kBaW9Zax1TFTuSkshtUaSL7MVGl2VWWWCYDYIkbooD492jj74V59dEHWya3Y'
-                },
-                body: JSON.stringify({
-                    image_id: id
-                }),
-            });
-            const data = await response.json();
-            console.log(data);
+        const response = await api.post('favourites', {
+            image_id: id,
+        })
+
+            console.log(response);
             console.log("Cat successfully saved")
             loadFavoritesCats()
 
 
-        } catch (error) {
-            console.error('Error al guardar la imagen:', error);
-            spanError.innerHTML = 'Hubo un error al guardar la imagen';
-        }
     }
 
     async function deleteFavoriteCats(id) {
